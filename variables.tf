@@ -144,6 +144,12 @@ variable "checks" {
   default     = {}
 }
 
+variable "threshold" {
+  description = "Threshold for alerts"
+  type        = number
+  default     = null
+}
+
 variable "locations" {
   description = "Locations"
   type        = list(string)

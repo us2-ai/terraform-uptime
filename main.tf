@@ -85,6 +85,7 @@ module "check" {
   is_paused                 = try(each.value.is_paused, var.is_paused)
   notes                     = try(each.value.notes, var.notes)
   tags                      = concat(try([module.tag[var.name].tag], []), try(each.value.tags, []), var.additional_tags)
+  threshold                 = try(each.value.threshold, var.threshold)
   sla                       = try(each.value.sla, var.sla)
   locations                 = try(each.value.locations, var.locations)
   use_ip_version            = try(each.value.use_ip_version, var.use_ip_version)
