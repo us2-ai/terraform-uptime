@@ -144,6 +144,24 @@ variable "checks" {
   default     = {}
 }
 
+variable "interval" {
+  description = "Check frequency in minutes"
+  type        = number
+  default     = null
+}
+
+variable "sensitivity" {
+  description = "Number of locations that must be down before alerting"
+  type        = number
+  default     = null
+}
+
+variable "num_retries" {
+  description = "Number of retries before marking check as down"
+  type        = number
+  default     = null
+}
+
 variable "threshold" {
   description = "Threshold for alerts"
   type        = number
@@ -197,4 +215,34 @@ variable "use_ip_version" {
   description = "Use IP Version"
   type        = string
   default     = null
+}
+
+variable "send_resolved_notifications" {
+  description = "Send resolved notifications"
+  type        = bool
+  default     = null
+}
+
+variable "sla_uptime" {
+  description = "SLA uptime (string, for RUM2 checks)"
+  type        = string
+  default     = null
+}
+
+variable "integrations" {
+  description = "Integrations"
+  type        = any
+  default     = {}
+}
+
+variable "escalations" {
+  description = "Escalations"
+  type        = any
+  default     = {}
+}
+
+variable "maintenances" {
+  description = "Maintenances"
+  type        = any
+  default     = {}
 }

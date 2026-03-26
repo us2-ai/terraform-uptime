@@ -12,7 +12,7 @@ variable "type" {
   type        = string
 
   validation {
-    condition     = can(regex("^(blacklist|dns|sslcert|malware|http|ssh|tcp)$", var.type))
+    condition     = can(regex("^(api|blacklist|dns|heartbeat|http|icmp|imap|malware|ntp|pagespeed|pop|rdap|rum2|smtp|sslcert|ssh|tcp|transaction|udp|webhook|whois)$", var.type))
     error_message = "Must be a valid type of check"
   }
 }
@@ -187,6 +187,31 @@ variable "check_version" {
 
 variable "use_ip_version" {
   description = "Use IP Version"
+  type        = string
+  default     = null
+}
+
+variable "pagespeed_config" {
+  description = "Pagespeed check configuration"
+  type        = any
+  default     = {}
+}
+
+variable "pagespeed_headers" {
+  description = "Pagespeed headers (JSON string)"
+  type        = string
+  default     = null
+  sensitive   = true
+}
+
+variable "send_resolved_notifications" {
+  description = "Send resolved notifications"
+  type        = bool
+  default     = null
+}
+
+variable "sla_uptime" {
+  description = "SLA uptime (string, for RUM2 checks)"
   type        = string
   default     = null
 }

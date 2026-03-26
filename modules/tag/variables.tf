@@ -1,6 +1,6 @@
-################
-# Uptime Group #
-################
+##############
+# Uptime Tag #
+##############
 variable "create" {
   description = "Create"
   type        = bool

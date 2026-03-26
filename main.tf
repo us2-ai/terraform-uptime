@@ -61,32 +61,70 @@ module "check" {
   source   = "./modules/check"
   for_each = { for k, v in var.checks : k => v if var.create }
 
-  create                    = try(each.value.create_check, true)
-  name                      = try(each.value.name, each.key)
-  type                      = each.value.type
-  address                   = try(each.value.address, var.address)
-  port                      = try(each.value.port, var.port)
-  script                    = try(each.value.script, var.script)
-  config                    = try(each.value.config, var.config)
-  contact_groups            = try(each.value.contact_groups, var.contact_groups)
-  encryption                = try(each.value.encryption, var.encryption)
-  dns_record_type           = try(each.value.dns_record_type, var.dns_record_type)
-  dns_server                = try(each.value.dns_server, var.dns_server)
-  expect_string             = try(each.value.expect_string, var.expect_string)
-  expect_string_type        = try(each.value.expect_string_type, var.expect_string_type)
-  headers                   = try(each.value.headers, var.headers)
-  username                  = try(each.value.username, var.username)
-  password                  = try(each.value.password, var.password)
-  proxy                     = try(each.value.proxy, var.proxy)
-  send_string               = try(each.value.send_string, var.send_string)
-  status_code               = try(each.value.status_code, var.status_code)
-  check_version             = try(each.value.check_version, var.check_version)
-  include_in_global_metrics = try(each.value.include_in_global_metrics, var.include_in_global_metrics)
-  is_paused                 = try(each.value.is_paused, var.is_paused)
-  notes                     = try(each.value.notes, var.notes)
-  tags                      = concat(try([module.tag[var.name].tag], []), try(each.value.tags, []), var.additional_tags)
-  threshold                 = try(each.value.threshold, var.threshold)
-  sla                       = try(each.value.sla, var.sla)
-  locations                 = try(each.value.locations, var.locations)
-  use_ip_version            = try(each.value.use_ip_version, var.use_ip_version)
+  create                      = try(each.value.create_check, true)
+  name                        = try(each.value.name, each.key)
+  type                        = each.value.type
+  address                     = try(each.value.address, var.address)
+  port                        = try(each.value.port, var.port)
+  script                      = try(each.value.script, var.script)
+  config                      = try(each.value.config, var.config)
+  contact_groups              = try(each.value.contact_groups, var.contact_groups)
+  interval                    = try(each.value.interval, var.interval)
+  sensitivity                 = try(each.value.sensitivity, var.sensitivity)
+  num_retries                 = try(each.value.num_retries, var.num_retries)
+  encryption                  = try(each.value.encryption, var.encryption)
+  dns_record_type             = try(each.value.dns_record_type, var.dns_record_type)
+  dns_server                  = try(each.value.dns_server, var.dns_server)
+  expect_string               = try(each.value.expect_string, var.expect_string)
+  expect_string_type          = try(each.value.expect_string_type, var.expect_string_type)
+  headers                     = try(each.value.headers, var.headers)
+  username                    = try(each.value.username, var.username)
+  password                    = try(each.value.password, var.password)
+  proxy                       = try(each.value.proxy, var.proxy)
+  send_string                 = try(each.value.send_string, var.send_string)
+  status_code                 = try(each.value.status_code, var.status_code)
+  check_version               = try(each.value.check_version, var.check_version)
+  include_in_global_metrics   = try(each.value.include_in_global_metrics, var.include_in_global_metrics)
+  is_paused                   = try(each.value.is_paused, var.is_paused)
+  notes                       = try(each.value.notes, var.notes)
+  tags                        = concat(try([module.tag[var.name].tag], []), try(each.value.tags, []), var.additional_tags)
+  threshold                   = try(each.value.threshold, var.threshold)
+  sla                         = try(each.value.sla, var.sla)
+  locations                   = try(each.value.locations, var.locations)
+  use_ip_version              = try(each.value.use_ip_version, var.use_ip_version)
+  send_resolved_notifications = try(each.value.send_resolved_notifications, var.send_resolved_notifications)
+  sla_uptime                  = try(each.value.sla_uptime, var.sla_uptime)
+  pagespeed_config            = try(each.value.pagespeed_config, {})
+  pagespeed_headers           = try(each.value.pagespeed_headers, null)
+}
+
+module "integration" {
+  source   = "./modules/integration"
+  for_each = { for k, v in var.integrations : k => v if var.create }
+
+  create         = try(each.value.create_integration, true)
+  name           = try(each.value.name, each.key)
+  type           = each.value.type
+  contact_groups = try(each.value.contact_groups, var.contact_groups)
+  settings       = try(each.value.settings, {})
+}
+
+module "escalation" {
+  source   = "./modules/escalation"
+  for_each = { for k, v in var.escalations : k => v if var.create }
+
+  create      = try(each.value.create_escalation, true)
+  check_id    = each.value.check_id
+  escalations = each.value.escalations
+}
+
+module "maintenance" {
+  source   = "./modules/maintenance"
+  for_each = { for k, v in var.maintenances : k => v if var.create }
+
+  create                         = try(each.value.create_maintenance, true)
+  check_id                       = each.value.check_id
+  schedule                       = try(each.value.schedule, null)
+  state                          = try(each.value.state, null)
+  pause_on_scheduled_maintenance = try(each.value.pause_on_scheduled_maintenance, null)
 }
