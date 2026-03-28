@@ -246,3 +246,57 @@ variable "maintenances" {
   type        = any
   default     = {}
 }
+
+variable "contacts" {
+  description = "Contacts"
+  type        = any
+  default     = {}
+}
+
+variable "statuspages" {
+  description = "Status Pages"
+  type        = any
+  default     = {}
+}
+
+variable "credentials" {
+  description = "Credentials"
+  type        = any
+  default     = {}
+}
+
+variable "dashboards" {
+  description = "Dashboards"
+  type        = any
+  default     = {}
+}
+
+variable "sla_reports" {
+  description = "SLA Reports"
+  type        = any
+  default     = {}
+}
+
+variable "scheduled_reports" {
+  description = "Scheduled Reports"
+  type        = any
+  default     = {}
+}
+
+variable "service_variables" {
+  description = "Service Variables"
+  type        = any
+  default     = {}
+}
+
+variable "subaccounts" {
+  description = "Subaccounts"
+  type        = any
+  default     = {}
+}
+
+variable "users" {
+  description = "Users"
+  type        = any
+  default     = {}
+}

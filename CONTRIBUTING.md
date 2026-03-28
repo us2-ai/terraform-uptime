@@ -84,3 +84,17 @@ terraform-docs .
 2. Add the type to the validation regex in `modules/integration/variables.tf`
 3. Add the type to the `coalesce()` chains in `modules/integration/outputs.tf`
 4. Update the README integrations list
+
+## Adding a New Resource Module
+
+1. Create a new directory under `modules/` (e.g., `modules/my_resource/`)
+2. Add `main.tf`, `variables.tf`, `outputs.tf`, and `versions.tf` following existing patterns:
+   - Use `count = var.create ? 1 : 0` for conditional creation
+   - Use `try(resource[0].attr, null)` in outputs
+3. Wire the module into the root `main.tf` with `for_each` and `try()` inheritance
+4. Add the input variable (type `any`, default `{}`) to root `variables.tf`
+5. Add the output to root `outputs.tf`
+6. Add the variable to `wrappers/main.tf` with 3-level `try()` fallback
+7. Update the README submodules table, inputs, and outputs
+8. Add usage to `examples/complete/`
+9. Update `CHANGELOG.md` under the `[Unreleased]` section

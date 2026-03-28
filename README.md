@@ -1,6 +1,6 @@
 # terraform-uptime
 
-Terraform module to manage [Uptime.com](https://uptime.com) monitoring resources including checks, tags, check groups, integrations, escalations, and maintenance windows.
+Terraform module to manage [Uptime.com](https://uptime.com) monitoring resources including checks, tags, check groups, integrations, escalations, maintenance windows, contacts, status pages, credentials, dashboards, SLA reports, and more.
 
 ## Usage
 
@@ -77,6 +77,15 @@ cachet, datadog, geckoboard, jira_servicedesk, klipfolio, microsoft_teams, opsge
 - **Check Groups** — Group checks with shared SLA and alerting configuration
 - **Escalations** — Define escalation policies attached to checks
 - **Maintenance** — Schedule maintenance windows for checks
+- **Contacts** — Manage notification contacts and contact groups (email, SMS, phone, push, integrations)
+- **Status Pages** — Public status pages with components, incidents, metrics, subscribers, domain allow/block lists, and users
+- **Credentials** — API credentials for secure check configuration
+- **Dashboards** — Custom monitoring dashboards with alerts, metrics, and service views
+- **SLA Reports** — Service level agreement tracking and reporting
+- **Scheduled Reports** — Automated SLA report delivery on a recurring schedule
+- **Service Variables** — Inject credential values into check configurations securely
+- **Subaccounts** — Manage subaccounts within your Uptime.com account
+- **Users** — Manage account team members with access levels and 2FA
 
 ## Submodules
 
@@ -88,6 +97,15 @@ cachet, datadog, geckoboard, jira_servicedesk, klipfolio, microsoft_teams, opsge
 | [integration](./modules/integration/) | Creates alert integrations |
 | [escalation](./modules/escalation/) | Creates check escalation policies |
 | [maintenance](./modules/maintenance/) | Creates check maintenance windows |
+| [contact](./modules/contact/) | Creates notification contacts and contact groups |
+| [statuspage](./modules/statuspage/) | Creates status pages with components, incidents, metrics, subscribers, and users |
+| [credential](./modules/credential/) | Creates API credentials |
+| [dashboard](./modules/dashboard/) | Creates custom monitoring dashboards |
+| [sla_report](./modules/sla_report/) | Creates SLA reports |
+| [scheduled_report](./modules/scheduled_report/) | Creates scheduled report deliveries |
+| [service_variable](./modules/service_variable/) | Creates service variables for credential injection |
+| [subaccount](./modules/subaccount/) | Creates subaccounts |
+| [user](./modules/user/) | Creates account users |
 
 ## Examples
 
@@ -112,11 +130,20 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | check | ./modules/check | n/a |
+| contact | ./modules/contact | n/a |
+| credential | ./modules/credential | n/a |
+| dashboard | ./modules/dashboard | n/a |
 | escalation | ./modules/escalation | n/a |
 | group | ./modules/group | n/a |
 | integration | ./modules/integration | n/a |
 | maintenance | ./modules/maintenance | n/a |
+| scheduled\_report | ./modules/scheduled\_report | n/a |
+| service\_variable | ./modules/service\_variable | n/a |
+| sla\_report | ./modules/sla\_report | n/a |
+| statuspage | ./modules/statuspage | n/a |
+| subaccount | ./modules/subaccount | n/a |
 | tag | ./modules/tag | n/a |
+| user | ./modules/user | n/a |
 
 ## Inputs
 
@@ -163,6 +190,15 @@ No providers.
 | integrations | Integrations | `any` | `{}` | no |
 | escalations | Escalations | `any` | `{}` | no |
 | maintenances | Maintenances | `any` | `{}` | no |
+| contacts | Contacts | `any` | `{}` | no |
+| statuspages | Status Pages | `any` | `{}` | no |
+| credentials | Credentials | `any` | `{}` | no |
+| dashboards | Dashboards | `any` | `{}` | no |
+| sla\_reports | SLA Reports | `any` | `{}` | no |
+| scheduled\_reports | Scheduled Reports | `any` | `{}` | no |
+| service\_variables | Service Variables | `any` | `{}` | no |
+| subaccounts | Subaccounts | `any` | `{}` | no |
+| users | Users | `any` | `{}` | no |
 
 ## Outputs
 
@@ -174,6 +210,15 @@ No providers.
 | integration | Integration module outputs |
 | escalation | Escalation module outputs |
 | maintenance | Maintenance module outputs |
+| contact | Contact module outputs |
+| statuspage | Status page module outputs |
+| credential | Credential module outputs |
+| dashboard | Dashboard module outputs |
+| sla\_report | SLA report module outputs |
+| scheduled\_report | Scheduled report module outputs |
+| service\_variable | Service variable module outputs |
+| subaccount | Subaccount module outputs |
+| user | User module outputs |
 <!-- END_TF_DOCS -->
 
 ## License

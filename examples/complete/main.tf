@@ -103,4 +103,69 @@ module "uptime" {
       ]
     }
   }
+
+  contacts = {
+    devops = {
+      email_list = ["oncall@example.com", "devops@example.com"]
+      sms_list   = ["+15551234567"]
+    }
+    management = {
+      email_list = ["cto@example.com"]
+    }
+  }
+
+  statuspages = {
+    public = {
+      name                  = "Service Status"
+      slug                  = "status"
+      allow_subscriptions   = true
+      show_active_incidents = true
+      show_history_tab      = true
+      timezone              = "UTC"
+
+      components = {
+        website = {
+          name       = "Website"
+          service_id = module.uptime.check["homepage"].id
+        }
+        dns = {
+          name       = "DNS"
+          service_id = module.uptime.check["dns"].id
+        }
+      }
+    }
+  }
+
+  credentials = {
+    api-token = {
+      credential_type = "TOKEN"
+      secret = {
+        secret = "your-api-token"
+      }
+    }
+  }
+
+  sla_reports = {
+    monthly = {
+      show_uptime_section        = true
+      show_uptime_sla            = true
+      show_response_time_section = true
+      services_tags              = ["complete-example"]
+    }
+  }
+
+  scheduled_reports = {
+    weekly-sla = {
+      sla_report       = module.uptime.sla_report["monthly"].name
+      recurrence       = "WEEKLY"
+      on_weekday       = 1
+      at_time          = 9
+      file_type        = "PDF"
+      recipient_emails = ["devops@example.com"]
+    }
+  }
+
+  subaccounts = {
+    staging = {}
+  }
 }

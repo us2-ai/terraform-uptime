@@ -2,7 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.1.0] - 2026-03-28
+
+### Features
+
+- Add contact module for managing notification contacts and contact groups
+- Add statuspage module with support for components, incidents, metrics, subscribers, domain allow/block lists, and users
+- Add credential module for managing API credentials
+- Add dashboard module for custom monitoring dashboards
+- Add SLA report module for service level agreement tracking
+- Add scheduled report module for automated report delivery
+- Add service variable module for secure credential injection into checks
+- Add subaccount module for subaccount management
+- Add user module for account team member management
+
+## [1.0.0] - 2026-03-26
 
 ### Features
 
